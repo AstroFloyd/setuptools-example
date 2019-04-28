@@ -1,0 +1,4 @@
+# package #
+
+A Python package
+

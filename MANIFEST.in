@@ -1,0 +1,7 @@
+# include package/module1.py
+# include package/module2.py
+# exclude testPackage.py       # Error prone: might forget to manually add new test files -> overcomplete package published
+
+# exclude *          # Issue: excludes default files, like setup.py
+# include setup.py   # Error prone: might forget to manually add everything -> incomplete package published
+
