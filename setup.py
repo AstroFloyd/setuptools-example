@@ -1,12 +1,15 @@
 #!/bin/env python3
 
 import os
-os.system('mv .git/ .git_temp/')             # No git repo, no cry - commenting this line in/out solves/reintroduces the problem
-os.system('rm -rf dist/ Package.egg-info/')  # Make 'really clean'
+#os.system('rm -rf *.egg-info/')        # Make 'really clean'
+
+
+# Prevent the setuptools_scm plugin from adding (only) the contents of the git repo to the tarball:
+from setuptools_scm import integration
+integration.find_files = lambda p: []
 
 
 from setuptools import setup  #, find_packages
-
 setup(
     name='Package',
     description='A Python package',
@@ -23,8 +26,6 @@ setup(
     license='GPL',
     keywords=['package']
 )
-
-os.system('mv .git_temp/ .git/')  # Reinstate git repo
 
 print("\nPython and Fortran source files included in tarball:")
 os.system('tar tfz dist/Package-0.0.1.tar.gz |grep -E "\.py|\.f90"')
